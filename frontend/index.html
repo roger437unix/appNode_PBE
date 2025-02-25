@@ -4,21 +4,28 @@
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title>Formulário Simples</title>
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
       <link rel="stylesheet" href="style.css">
     </head>
     <body>
       <div class="container">
-        <h1>Formulário</h1>
+        <br><h1>Formulário</h1><br>
+        
         <div class="form-group">
           <label for="nome">Nome:</label>
-          <input type="text" class="form-control" id="nome" placeholder="Digite seu nome">
+          <input type="text" class="form-control" id="nome" placeholder="Digite seu nome...">
         </div>
+
         <div class="form-group">
           <label for="email">Email:</label>
-          <input type="email" class="form-control" id="email" placeholder="Digite seu email">
-        </div>
-        <button id="enviarBtn" class="btn btn-primary">Enviar</button>
+          <input type="email" class="form-control" id="email" placeholder="Digite seu email...">
+        </div><br>
+
+        <button id="enviarBtn" class="ui blue button">Enviar</button>
+        <button id="limparBtn" class="ui green button">Limpar</button>
+        <button id="futureBtn" class="ui orange button">Não sei</button>
+
         <div id="mensagem" class="mt-3"></div>
       </div>
 
@@ -55,6 +62,17 @@
                 document.getElementById('email').value = '';
             }
         });
+
+        document.getElementById('limparBtn').addEventListener('click', function() {
+          document.getElementById('nome').value = '';
+          document.getElementById('email').value = '';          
+          document.getElementById("mensagem").textContent = "";
+        })
+
+        document.getElementById('futureBtn').addEventListener('click', function() {                   
+          document.getElementById("mensagem").textContent = "Em construção...";
+        })
+
       </script>
     </body>
     </html>

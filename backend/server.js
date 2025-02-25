@@ -26,8 +26,8 @@ app.post('/api/dados', (req, res) => {
         // Envia uma resposta de volta para o frontend
         res.json({ mensagem: 'Dados recebidos com sucesso!' });
     } else {
-        console.log('E-mail ruim!!!');
-        res.json({ mensagem: `E-mail inválido: ${dadosRecebidos.email}` });
+        console.log('Email inválido => ', dadosRecebidos.email);
+        res.json({ mensagem: `Email inválido: ${dadosRecebidos.email}` });
     }        
 });
 
