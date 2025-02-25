@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+    <html lang="pt-BR">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Formulário Simples</title>
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+      <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+      <div class="container">
+        <h1>Formulário</h1>
+        <div class="form-group">
+          <label for="nome">Nome:</label>
+          <input type="text" class="form-control" id="nome" placeholder="Digite seu nome">
+        </div>
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input type="email" class="form-control" id="email" placeholder="Digite seu email">
+        </div>
+        <button id="enviarBtn" class="btn btn-primary">Enviar</button>
+        <div id="mensagem" class="mt-3"></div>
+      </div>
+
+      <script>
+        document.getElementById('enviarBtn').addEventListener('click', function() {
+                const nome = document.getElementById('nome').value;
+                const email = document.getElementById('email').value;
+
+            if (nome != '' && email != '') {
+                // Cria um objeto com os dados
+                const dados = {
+                    nome: nome,
+                    email: email
+                };
+
+                // Envia os dados para o backend
+                fetch('http://localhost:3000/api/dados', { // Ajuste a URL se necessário
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(dados)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('mensagem').textContent = data.mensagem;
+                })
+                .catch(error => {
+                    console.error('Erro ao enviar dados:', error);
+                    document.getElementById('mensagem').textContent = 'Erro ao enviar os dados.';
+                });
+
+                document.getElementById('nome').value = '';
+                document.getElementById('email').value = '';
+            }
+        });
+      </script>
+    </body>
+    </html>
